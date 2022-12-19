@@ -22,7 +22,7 @@ actions as attempts to block Cloak could also damage services the censor
 state relies on.
 
 %prep
-%autosetup
+%autosetup -n Cloak-%{version}
 
 %build
 make version=v%{version} build
