@@ -25,7 +25,7 @@ state relies on.
 %autosetup -n Cloak-%{version}
 
 %build
-make version=v%{version} build
+make version=v%{version}
 
 %check
 # nothing for now
