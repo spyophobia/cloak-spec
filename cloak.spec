@@ -7,7 +7,7 @@ Summary: A censorship circumvention tool to evade detection by authoritarian sta
 License: GPLv3
 URL: https://github.com/cbeuw/Cloak
 Source0: %{url}/archive/v%{version}.tar.gz
-BuildRequires: gcc golang make
+BuildRequires: gcc git golang make
 
 %description
 Cloak is a pluggable transport that enhances traditional proxy tools like
