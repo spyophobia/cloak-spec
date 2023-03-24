@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name: cloak
-Version: 2.6.0
+Version: 2.6.1
 Release: 1%{?dist}
 Summary: A censorship circumvention tool to evade detection by authoritarian state adversaries
 License: GPLv3
@@ -49,5 +49,8 @@ done
 %config %{_sysconfdir}/%{name}/*
 
 %changelog
+* Fri Mar 24 2023 spyophobia - 2.6.1-1
+- Release 2.6.1
+
 * Mon Dec 19 2022 spyophobia - 2.6.0-1
 - Release 2.6.0
