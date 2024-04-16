@@ -7,7 +7,7 @@ Summary: A censorship circumvention tool to evade detection by authoritarian sta
 License: GPLv3
 URL: https://github.com/cbeuw/Cloak
 Source0: %{url}/archive/v%{version}.tar.gz
-BuildRequires: gcc git golang make
+BuildRequires: curl gcc git make tar
 
 %description
 Cloak is a pluggable transport that enhances traditional proxy tools like
@@ -24,7 +24,29 @@ state relies on.
 %prep
 %autosetup -n Cloak-%{version}
 
+# Use latest official stable Go build
+_GO_VER="$(curl -Lf https://golang.org/VERSION?m=text | head -n1)"
+%ifarch x86_64
+    _ARCH=amd64
+%endif
+%ifarch aarch64
+    _ARCH=arm64
+%endif
+if [[ -z "${_ARCH}" ]]; then
+    echo "Unsupported architecture!"
+    exit 1
+fi
+_GO_DL_NAME="${_GO_VER}.linux-${_ARCH}.tar.gz"
+_GO_DL_URL="https://go.dev/dl/${_GO_DL_NAME}"
+
+curl -Lfo "${_GO_DL_NAME}" "${_GO_DL_URL}"
+tar -xf "${_GO_DL_NAME}"
+# bins in go/bin
+
 %build
+_GO_BIN_DIR=$(realpath "go/bin")
+export PATH="${_GO_BIN_DIR}:${PATH}"
+
 make version=v%{version}
 
 %check
